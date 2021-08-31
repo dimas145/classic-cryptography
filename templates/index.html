@@ -35,7 +35,7 @@
       <div class="app-input">
         
         <div class="app-container-title">
-          <h5><strong>Input</strong></h5>
+          <h5 id="left-tab">Plaintext</h5>
         </div>
 
         <div class="app-container-area">
@@ -43,7 +43,7 @@
           <form>
             <div class="form-group">
               <label class="form-label float-left" for="input-text-box">Input Text :</label>
-              <textarea class="form-control" id="input-text-box" rows="10" spellcheck="false"></textarea>
+              <textarea class="form-control" id="input-text-box" rows="17" spellcheck="false"></textarea>
             </div>
           </form>
 
@@ -58,22 +58,33 @@
         </div>
         
         <div class="app-setting-action">        
-          <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-secondary active">
-              <input type="radio" name="options" id="option1" autocomplete="off" checked> Encrypt
+          <div class="btn-group btn-group-toggle app-setting-action-button" data-toggle="buttons">
+            <label id="app-setting-action-button-1" class="btn btn-primary shadow-none encrypt-button active">
+              <input type="radio" name="action-options" id="encrypt" autocomplete="off" onchange="handleChange(this);" checked> Encrypt
             </label>
-            <label class="btn btn-secondary">
-              <input type="radio" name="options" id="option2" autocomplete="off"> Decrypt
+            <label id="app-setting-action-button-2" class="btn btn-primary shadow-none decrypt-button">
+              <input type="radio" name="action-options" id="decrypt" autocomplete="off" onchange="handleChange(this);"> Decrypt
             </label>
           </div>
         </div>
         
         <div class="app-setting-form">
-        
+          <div class="app-setting-form-container">
+            <select class="custom-select">
+              <option selected>Select Cryptography Technique!</option>
+              <option value="1">Vinigire Cipher</option>
+              <option value="2">Full Vigenere Cipher</option>
+              <option value="3">Auto-key Vigenere Cipher</option>
+              <option value="4">Extended Vigenere Cipher</option>
+              <option value="5">Playfair Cipher</option>
+              <option value="6">Affine Cipher</option>
+              <option value="7">Hill/Enigma Cipher</option>
+            </select>
+          </div>
         </div>
         
         <div class="app-setting-execute">
-          <button type="button" id="btn-post" onclick="do_ajax();">Click</button>
+          <button id="execute-button" class="btn btn-primary shadow-none btn-block execute-button" type="button" id="btn-post" onclick="do_ajax();">Execute!</button>
         </div>
       
       </div>
@@ -81,7 +92,7 @@
       <div class="app-output">
 
         <div class="app-container-title">
-          <h5><strong>Output</strong></h5>
+          <h5 id="right-tab">Ciphertext</h5>
         </div>
       
         <div class="app-container-area">
@@ -89,7 +100,7 @@
           <form>
             <div class="form-group">
               <label class="form-label float-left" for="output-text-box">Output Text :</label>
-              <textarea class="form-control" id="output-text-box" rows="10" spellcheck="false"></textarea>
+              <textarea class="form-control" id="output-text-box" rows="18" spellcheck="false"></textarea>
             </div>
           </form>
 

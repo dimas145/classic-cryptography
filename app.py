@@ -19,5 +19,14 @@ def update():
       name = request.form["name"]
       return "Hello " + name + "!"
     
+@app.route("/action", methods=["POST"])
+def action():
+   print("ACTION ===>")
+   if request.method == "POST":
+      state = request.form["state"]
+      print("State : " + state)
+      return "State : " + state
+
+
 if __name__ == "__main__":
    app.run()
