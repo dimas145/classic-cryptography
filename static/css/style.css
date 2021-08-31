@@ -1,0 +1,110 @@
+
+#main-area {
+    padding: 30px 50px 20px 50px;
+    background-color: rgb(199, 242, 255);
+    height: 100vh;
+}
+
+#navbar-area {
+    border-radius: 15px;
+    height: 65px;
+}
+
+#input-text-box {
+    text-decoration: none;
+}
+
+.app-input {
+    grid-area: app-input;
+    background-color: rgba(255, 255, 255, 1.0);
+}
+
+.app-setting {
+    grid-area: app-setting;
+    margin: 0 40px;
+    background-color: rgb(255, 169, 169);
+}
+
+.app-output {
+    grid-area: app-output;
+    background-color: rgba(255, 255, 255, 1.0);
+}
+
+.app-container {
+    display: grid;
+    grid-template-areas: 'app-input app-setting app-output';
+    grid-template-columns: 37% 26% 37%;
+    grid-template-rows: 800px;
+    width: 100%;
+    margin-top: 30px;
+}
+  
+.app-container > div {
+    text-align: center;
+    padding: 0;
+    font-size: 30px;
+    border-radius: 23px;
+}
+
+.app-container-title {
+    background-color: rgb(17, 160, 255);
+    color: white;
+    border-radius: 23px 23px 0 0;
+    padding-top: 12px;
+    width: 100%;
+    height: 50px;
+}
+
+.app-container-area {
+    padding: 30px 30px 20px 30px;
+}
+
+.form-label {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.action {
+    width: 120px;
+}
+
+.app-setting-title {
+    grid-area: app-setting-title;
+}
+
+.app-setting-action {
+    grid-area: app-setting-action;
+    display: flex;
+    
+}
+
+.app-setting-form {
+    grid-area: app-setting-form;
+}
+
+.app-setting-execute {
+    grid-area: app-setting-execute;
+}
+
+.app-setting {
+    display: grid;
+    grid-template-areas: 
+    'app-setting-title'
+    'app-setting-action'
+    'app-setting-form'
+    'app-setting-execute';
+    grid-template-columns: 100%;
+    grid-template-rows: 10% 15% 55% 20%;
+}
+  
+.app-setting > div {
+    text-align: center;
+    padding: 0;
+    font-size: 20px;
+    background-color: antiquewhite;
+}
+
+.app-setting-title-text {
+    font-size: 30px;
+    font-weight: 700;
+}
