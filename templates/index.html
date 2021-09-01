@@ -45,6 +45,10 @@
               <label class="form-label float-left" for="input-text-box">Input Text :</label>
               <textarea class="form-control" id="input-text-box" rows="17" spellcheck="false"></textarea>
             </div>
+            <div id="input-file-area" class="input-file custom-file">
+              <input type="file" class="custom-file-input" id="input-file">
+              <label id="file-label" class="custom-file-label" for="input-file">Choose Input File!</label>
+            </div>
           </form>
 
         </div>
@@ -60,19 +64,22 @@
         <div class="app-setting-action">        
           <div class="btn-group btn-group-toggle app-setting-action-button" data-toggle="buttons">
             <label id="app-setting-action-button-1" class="btn btn-primary shadow-none encrypt-button active">
-              <input type="radio" name="action-options" id="encrypt" autocomplete="off" onchange="handleChange(this);" checked> Encrypt
+              <input type="radio" name="action-options" id="encrypt" autocomplete="off" onchange="change_action(this);" checked> Encrypt
             </label>
             <label id="app-setting-action-button-2" class="btn btn-primary shadow-none decrypt-button">
-              <input type="radio" name="action-options" id="decrypt" autocomplete="off" onchange="handleChange(this);"> Decrypt
+              <input type="radio" name="action-options" id="decrypt" autocomplete="off" onchange="change_action(this);"> Decrypt
             </label>
           </div>
         </div>
         
         <div class="app-setting-form">
+          
           <div class="app-setting-form-container">
-            <select class="custom-select">
-              <option selected>Select Cryptography Technique!</option>
-              <option value="1">Vinigire Cipher</option>
+
+            <h4 class="form-config-title-main">Cipher Configuration</h2>
+            
+            <select id="select-cipher" class="custom-select">
+              <option value="1" selected>Vinigire Cipher</option>
               <option value="2">Full Vigenere Cipher</option>
               <option value="3">Auto-key Vigenere Cipher</option>
               <option value="4">Extended Vigenere Cipher</option>
@@ -80,11 +87,17 @@
               <option value="6">Affine Cipher</option>
               <option value="7">Hill/Enigma Cipher</option>
             </select>
+
+            <div id="app-setting-form-dynamic">
+
+            </div>
+            
           </div>
+
         </div>
         
         <div class="app-setting-execute">
-          <button id="execute-button" class="btn btn-primary shadow-none btn-block execute-button" type="button" id="btn-post" onclick="do_ajax();">Execute!</button>
+          <button id="execute-button" class="btn btn-primary shadow-none btn-block execute-button" type="button" id="btn-post" onclick="execute();">Execute!</button>
         </div>
       
       </div>
@@ -100,8 +113,9 @@
           <form>
             <div class="form-group">
               <label class="form-label float-left" for="output-text-box">Output Text :</label>
-              <textarea class="form-control" id="output-text-box" rows="18" spellcheck="false"></textarea>
+              <textarea class="form-control" id="output-text-box" rows="17" spellcheck="false" readonly="true"></textarea>
             </div>
+            <button type="button" id="download-button" class="download-button btn btn-primary btn-lg btn-block">Download Result</button>
           </form>
 
         </div>
@@ -114,8 +128,8 @@
 
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   </body>
 </html>

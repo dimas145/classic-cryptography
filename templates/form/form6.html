@@ -1,0 +1,27 @@
+<div class="form-group">
+  <label for="cipher-key-m-radio" class="input-form-config-label">M Key :</label>
+  <div id="cipher-key-m-radio" class="cipher-key-m-radio">        
+    <div class="btn-group btn-group-toggle cipher-key-m-radio-button" data-toggle="buttons">
+      {% for x in [1, 3, 5, 7, 9, 11] %}
+        <label id="cipher-key-m-radio-button-{{ x }}" class="btn btn-primary shadow-none cipher-key-radio">
+          <input type="radio" name="key-m-options" id="{{ x }}" autocomplete="off" onchange="change_m_key(this);"> {{ x }}
+        </label>
+      {% endfor %}
+    </div>
+    <div class="btn-group btn-group-toggle cipher-key-m-radio-button" data-toggle="buttons">
+      {% for x in [15, 17, 19, 21, 23, 25] %}
+        <label id="cipher-key-m-radio-button-{{ x }}" class="btn btn-primary shadow-none cipher-key-radio">
+          <input type="radio" name="key-m-options" id="{{ x }}" autocomplete="off" onchange="change_m_key(this);"> {{ x }}
+        </label>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="cipher-key-b" class="input-form-config-label">B Key :</label>
+  <input type="text" class="input-form-config form-control" id="cipher-key-b" placeholder="Enter cipher key!">
+</div>
+
+
+

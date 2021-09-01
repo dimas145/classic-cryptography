@@ -7,11 +7,17 @@ app = Flask(__name__, static_folder=STATIC_DIR)
 
 @app.route("/favicon.ico")
 def favicon():
-    return send_from_directory(os.path.join(app.root_path, "static"), "img/favicon.ico", mimetype="image/vnd.microsoft.icon")
+   return send_from_directory(os.path.join(app.root_path, "static"), "img/favicon.ico", mimetype="image/vnd.microsoft.icon")
  
 @app.route("/")
 def index():
-    return render_template("index.html")
+   return render_template("index.html")
+ 
+@app.route("/form", methods=["POST"])
+def form():
+   if request.method == "POST":
+      cipher_id = request.form["cipher_id"]
+      return render_template("form/form" + str(cipher_id) + ".html")
 
 @app.route("/update", methods=["POST"])
 def update():
@@ -24,7 +30,6 @@ def action():
    print("ACTION ===>")
    if request.method == "POST":
       state = request.form["state"]
-      print("State : " + state)
       return "State : " + state
 
 

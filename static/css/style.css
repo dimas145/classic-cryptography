@@ -140,7 +140,7 @@
 }
 
 .app-setting-form-container {
-    margin: 30px 20px;
+    margin: 30px 20px 0 20px;
 }
 
 .app-setting-form-container .custom-select {
@@ -160,4 +160,65 @@
 
 #left-tab, #right-tab {
     font-weight: 900;
+}
+
+#app-setting-form-dynamic {
+    margin-top: 20px;
+}
+
+.input-file {
+    font-size: 16px;
+}
+
+.download-button {
+    height: 38px;
+    margin-top: 30px;
+    font-size: 16px;
+}
+
+.form-control[disabled], .form-control[readonly] {
+    background-color: white;
+}
+
+.input-form-config {
+    border-radius: 12px;
+}
+
+.input-form-config-label {
+    float: left;
+    font-size: 14px;
+    margin-left: 5px;
+}
+
+.form-config-title-main {
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: 900;
+}
+
+#cipher-key-m-radio {
+    min-height: 100px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.cipher-key-radio {
+    border-radius: 12px;
+    min-width: 16.6%;
+    font-size: 10px;
+    font-weight: 900;
+}
+
+.cipher-key-radio.focus, .cipher-key-radio:focus {
+    box-shadow: none !important;
+}
+
+.cipher-key-m-radio-button {
+    width: 100%;
+    margin-bottom: 10px;
+    float: left;
+}
+
+.form-group {
+    margin-top: 30px;
 }
