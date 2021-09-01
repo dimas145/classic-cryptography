@@ -1,7 +1,11 @@
 from flask import Flask, render_template, request, send_from_directory
+from src.vigenere import VigenereCipher
 import os
+import re
 
 STATIC_DIR = os.path.abspath("static")
+
+vigenere_vipher = VigenereCipher()
 
 app = Flask(__name__, static_folder=STATIC_DIR)
 
@@ -22,12 +26,25 @@ def form():
 @app.route("/update", methods=["POST"])
 def update():
    if request.method == "POST":
-      name = request.form["name"]
-      return "Hello " + name + "!"
+      text = request.form["text"]
+      key = request.form["key"]
+      command = request.form["command"]
+      type = request.form["type"]
+      alphabets = re.sub(r'[^a-zA-Z]', '', text).upper()
+      if(type == "1"):
+         result = ""
+         if(command == "encrypt"):
+            result = vigenere_vipher.encrypt(text, key)
+         else:
+            result = vigenere_vipher.decrypt(text, key)
+         return result
+      else:
+         return key + " " + command + " " + type + " " + alphabets
+             
+      
     
 @app.route("/action", methods=["POST"])
 def action():
-   print("ACTION ===>")
    if request.method == "POST":
       state = request.form["state"]
       return "State : " + state

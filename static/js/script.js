@@ -10,7 +10,11 @@ select.addEventListener('change', () => {
 function execute() {
     var request = new XMLHttpRequest();
     var result = document.getElementById('output-text-box');
+    var command = document.getElementById('encrypt').checked ? 'encrypt' : 'decrypt';
+    console.log("Command : " + command);
+    var key = document.getElementById('cipher-key').value != "" ? document.getElementById('cipher-key').value : "abcd";
     
+
     request.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200) {
             result.value = this.responseText;
@@ -19,7 +23,7 @@ function execute() {
     
     request.open('POST', '/update', true);
     request.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
-    request.send("name=" + document.getElementById('input-text-box').value);
+    request.send("text=" + document.getElementById('input-text-box').value  + "&command=" + command + "&key=" + key + "&type=" + document.getElementById('select-cipher').value);
 }
 
 function change_config_form(id) {
