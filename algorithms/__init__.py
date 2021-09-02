@@ -1,1 +1,4 @@
-from vigenere import VigenereCipher
+from vigenere import (
+    VigenereCipher,
+    FullVigenereCipher
+)
