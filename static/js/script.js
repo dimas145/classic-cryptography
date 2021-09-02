@@ -6,32 +6,30 @@ select.addEventListener('change', () => {
     change_config_form(select.value)
 });
 
-
 function execute() {
     var request = new XMLHttpRequest();
     var result = document.getElementById('output-text-box');
     var command = document.getElementById('encrypt').checked ? 'encrypt' : 'decrypt';
     console.log("Command : " + command);
     var key = document.getElementById('cipher-key').value != "" ? document.getElementById('cipher-key').value : "abcd";
-    
 
-    request.onreadystatechange = function(){
-        if(this.readyState == 4 && this.status == 200) {
+    request.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
             result.value = this.responseText;
         }
     }
-    
+
     request.open('POST', '/update', true);
     request.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
-    request.send("text=" + document.getElementById('input-text-box').value  + "&command=" + command + "&key=" + key + "&type=" + document.getElementById('select-cipher').value);
+    request.send("text=" + document.getElementById('input-text-box').value + "&command=" + command + "&key=" + key + "&type=" + document.getElementById('select-cipher').value);
 }
 
 function change_config_form(id) {
     var request = new XMLHttpRequest();
     var result = document.getElementById('app-setting-form-dynamic');
 
-    request.onreadystatechange = function(){
-        if(this.readyState == 4 && this.status == 200) {
+    request.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
             result.innerHTML = this.responseText;
         }
     }
@@ -42,8 +40,7 @@ function change_config_form(id) {
 }
 
 function change_action(src) {
-    
-    if(src.id == "encrypt") {
+    if (src.id == "encrypt") {
         state = "encrypt";
         document.getElementById("left-tab").innerHTML = "Plaintext";
         document.getElementById("right-tab").innerHTML = "Ciphertext";
@@ -54,9 +51,9 @@ function change_action(src) {
     }
 
     var request = new XMLHttpRequest();
-    
-    request.onreadystatechange = function(){
-        if(this.readyState == 4 && this.status == 200) {
+
+    request.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
             console.log(this.responseText);
         }
     }
@@ -64,15 +61,14 @@ function change_action(src) {
     request.open('POST', '/action', true);
     request.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
     request.send("state=" + src.id);
-
 }
 
 var upload = document.getElementById('input-file');
 
 upload.addEventListener('change', () => {
-    var filename =  upload.value.replaceAll("\\", " ").split(" ");
-    document.getElementById('file-label').innerHTML = filename[filename.length-1]
-    
+    var filename = upload.value.replaceAll("\\", " ").split(" ");
+    document.getElementById('file-label').innerHTML = filename[filename.length - 1]
+
     var file = document.getElementById('input-file').files[0];
 
     const reader = new FileReader();
@@ -89,13 +85,11 @@ input.addEventListener('input', () => {
 })
 
 function download(filename, textInput) {
-
     var element = document.createElement('a');
-    element.setAttribute('href','data:text/plain;charset=utf-8,' + encodeURIComponent(textInput));
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(textInput));
     element.setAttribute('download', filename);
     document.body.appendChild(element);
     element.click();
-
 }
 
 document.getElementById("download-button").addEventListener("click", () => {
@@ -107,10 +101,9 @@ document.getElementById("download-button").addEventListener("click", () => {
 }, false);
 
 function change_m_key(src) {
-
     var ele = document.getElementsByName("key-m-options");
-    for(var i=0; i<ele.length; i++) {
-        if(ele[i].id != src.id) {
+    for (var i = 0; i < ele.length; i++) {
+        if (ele[i].id != src.id) {
             ele[i].classList.remove('active')
             ele[i].checked = false;
             ele[i].active = false;
@@ -118,7 +111,7 @@ function change_m_key(src) {
     }
 
     var div = document.getElementsByClassName("cipher-key-radio");
-    for(var i=0; i<div.length; i++) {
+    for (var i = 0; i < div.length; i++) {
         div[i].classList.remove('active')
     }
 
