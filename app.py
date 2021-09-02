@@ -1,11 +1,12 @@
 from flask import Flask, render_template, request, send_from_directory
-from src.vigenere import VigenereCipher
 import os
 import re
 
+import algorithms
+
 STATIC_DIR = os.path.abspath("static")
 
-vigenere_vipher = VigenereCipher()
+vigenere_vipher = algorithms.VigenereCipher()
 
 app = Flask(__name__, static_folder=STATIC_DIR)
 
