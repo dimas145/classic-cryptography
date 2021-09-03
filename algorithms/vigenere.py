@@ -79,8 +79,11 @@ class FullVigenereCipher:
         for i in range(len(self.text)):
             idx_text = Utils.char_to_idx(self.text[i])
             idx_key = Utils.char_to_idx(self.key[i % len(self.key)])
-            decrypted += Utils.idx_to_char_upper(
-                (self.vigenere_square[idx_key][idx_text]) % 26)
+
+            for j in range(26):
+                if self.vigenere_square[j][idx_key] == idx_text:
+                    decrypted += Utils.idx_to_char_upper(j)
+
         return decrypted
 
     def execute(self, command, text, key):
