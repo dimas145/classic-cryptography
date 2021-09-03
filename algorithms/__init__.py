@@ -1,4 +1,5 @@
 from vigenere import (
     VigenereCipher,
-    FullVigenereCipher
+    FullVigenereCipher,
+    AutoKeyVigenereCipher
 )
