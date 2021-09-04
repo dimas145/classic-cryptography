@@ -1,4 +1,5 @@
 var select = document.getElementById('select-cipher')
+var m_key = 0
 
 change_config_form(1)
 
@@ -21,7 +22,7 @@ function execute() {
 
     request.open('POST', '/update', true);
     request.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
-    request.send("text=" + document.getElementById('input-text-box').value + "&command=" + command + "&key=" + key + "&type=" + document.getElementById('select-cipher').value);
+    request.send("text=" + document.getElementById('input-text-box').value + "&command=" + command + "&key=" + key + "&type=" + document.getElementById('select-cipher').value + "&m_key=" + m_key);
 }
 
 function change_config_form(id) {
@@ -119,4 +120,5 @@ function change_m_key(src) {
     document.getElementById(src.id).active = true
 
     console.log("====> " + src.id)
+    m_key = src.id
 }

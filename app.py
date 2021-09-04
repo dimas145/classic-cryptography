@@ -6,8 +6,6 @@ import algorithms
 
 STATIC_DIR = os.path.abspath("static")
 
-vigenere_vipher = algorithms.VigenereCipher()
-
 app = Flask(__name__, static_folder=STATIC_DIR)
 
 
@@ -39,12 +37,17 @@ def update():
         type = request.form["type"]
         alphabets = re.sub(r'[^a-zA-Z]', '', text).upper()
         if (type == "1"):
-            result = ""
-            if (command == "encrypt"):
-                result = vigenere_vipher.encrypt(text, key)
-            else:
-                result = vigenere_vipher.decrypt(text, key)
-            return result
+            return algorithms.VigenereCipher().execute(command, text, key)
+        elif (type == "2"):
+            return algorithms.FullVigenereCipher().execute(command, text, key)
+        elif (type == "3"):
+            return algorithms.AutoKeyVigenereCipher().execute(
+                command, text, key)
+        elif (type == "5"):
+            return algorithms.PlayFairCipher().execute(command, text, key)
+        elif (type == "6"):
+            m = int(request.form["m_key"])
+            return algorithms.AffineCipher().execute(command, text, m, int(key))
         else:
             return key + " " + command + " " + type + " " + alphabets
 

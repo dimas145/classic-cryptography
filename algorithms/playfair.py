@@ -28,6 +28,7 @@ class PlayFairCipher:
                 self.key_matrix[cnt] = i
 
     def create_bigram_list(self, text):
+        self.bigram = []
         i = 0
         while i < len(text):
             if i == len(text) - 1:
@@ -115,3 +116,9 @@ class PlayFairCipher:
         # remove meaningless X?
 
         return decrypted
+
+    def execute(self, command, text, key):
+        if (command == "encrypt"):
+            return self.encrypt(text, key)
+        else:
+            return self.decrypt(text, key)
