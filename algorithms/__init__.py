@@ -1,11 +1,11 @@
-from vigenere import (
+from .vigenere import (
     VigenereCipher,
     FullVigenereCipher,
     AutoKeyVigenereCipher
 )
-from playfair import (
+from .playfair import (
     PlayFairCipher
 )
-from affine import (
+from .affine import (
     AffineCipher
 )

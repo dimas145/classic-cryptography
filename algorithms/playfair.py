@@ -1,5 +1,5 @@
 from collections import OrderedDict
-from utils import Utils
+from .utils import Utils
 
 import re
 

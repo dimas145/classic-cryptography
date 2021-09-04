@@ -1,7 +1,7 @@
 import re
 import random
 
-from utils import Utils
+from .utils import Utils
 
 
 class VigenereCipher:
