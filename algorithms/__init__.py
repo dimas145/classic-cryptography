@@ -6,3 +6,6 @@ from vigenere import (
 from playfair import (
     PlayFairCipher
 )
+from affine import (
+    AffineCipher
+)
