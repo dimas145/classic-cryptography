@@ -3,3 +3,6 @@ from vigenere import (
     FullVigenereCipher,
     AutoKeyVigenereCipher
 )
+from playfair import (
+    PlayFairCipher
+)
