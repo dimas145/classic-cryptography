@@ -150,8 +150,8 @@ class AutoKeyVigenereCipher:
         decrypted = ""
         j = 0
         for i in range(len(self.text)):
-            if i > len(self.key):
-                idx_key += decrypted[j]
+            if i > len(self.key) - 1:
+                self.key += decrypted[j]
                 j += 1
 
             idx_text = Utils.char_to_idx(self.text[i])
