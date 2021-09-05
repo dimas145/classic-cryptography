@@ -9,7 +9,7 @@ class PlayFairCipher:
         self.text = ""
         self.key = ""
         self.bigram = []
-        self.key_matrix = [0 for _ in range(25)]
+        self.key_matrix = [-1 for _ in range(25)]
 
     def init_key_matrix(self, key):
         key = re.sub(r'[^a-zA-Z]', '', key).upper()
@@ -19,13 +19,13 @@ class PlayFairCipher:
         cnt = 0
         for i in range(len(key)):
             if key[i] != "J":
+                self.key_matrix[cnt] = Utils.char_to_idx(key[i])
                 cnt += 1
-                self.key_matrix[i] = Utils.char_to_idx(key[i])
 
         for i in range(26):
-            if i != 10 and Utils.idx_to_char_upper(i) not in key:
-                cnt += 1
+            if i != 9 and Utils.idx_to_char_upper(i) not in key:
                 self.key_matrix[cnt] = i
+                cnt += 1
 
     def create_bigram_list(self, text):
         self.bigram = []
@@ -56,7 +56,7 @@ class PlayFairCipher:
 
     def encrypt(self, text, key):
         self.preprocessing(text, key)
-        self.init_key_matrix(key)
+        self.init_key_matrix(self.key)
 
         # replace j with i
         self.text.replace("J", "I")
@@ -66,22 +66,23 @@ class PlayFairCipher:
 
         encrypted = ""
         for i in range(len(self.bigram)):
-            first = self.key_matrix.index(Utils.char_to_idx(self.bigram[i][0]))
-            second = self.key_matrix.index(Utils.char_to_idx(
-                self.bigram[i][1]))
+            first = self.key_matrix.index(self.bigram[i][0])
+            second = self.key_matrix.index(self.bigram[i][1])
 
             if first // 5 == second // 5:
                 # same row
-                first = first - 5 if first % 5 == 0 else first + 1
-                second = second - 5 if second % 5 == 0 else second + 1
+                first = first - 4 if first % 5 == 4 else first + 1
+                second = second - 4 if second % 5 == 4 else second + 1
             elif first % 5 == second % 5:
                 # same column
                 first = first - 20 if first // 5 == 4 else first + 5
                 second = second - 20 if second // 5 == 4 else second + 5
             else:
                 # rectangular pattern
-                first = first // 5 * 5 + second % 5 + 1
-                second = second // 5 * 5 + first % 5 + 1
+                new_first = first // 5 * 5 + second % 5
+                second = second // 5 * 5 + first % 5
+
+                first = new_first
 
             encrypted += Utils.idx_to_char_upper(self.key_matrix[first])
             encrypted += Utils.idx_to_char_upper(self.key_matrix[second])
@@ -90,7 +91,7 @@ class PlayFairCipher:
 
     def decrypt(self, text, key):
         self.preprocessing(text, key)
-        self.init_key_matrix(key)
+        self.init_key_matrix(self.key)
 
         decrypted = ""
         for i in range(0, len(self.text), 2):
@@ -99,16 +100,18 @@ class PlayFairCipher:
 
             if first // 5 == second // 5:
                 # same row
-                first = first + 5 if first % 5 == 0 else first - 1
-                second = second + 5 if second % 5 == 0 else second - 1
+                first = first + 4 if first % 5 == 0 else first - 1
+                second = second + 4 if second % 5 == 0 else second - 1
             elif first % 5 == second % 5:
                 # same column
-                first = first + 20 if first // 5 == 4 else first - 5
-                second = second + 20 if second // 5 == 4 else second - 5
+                first = first + 20 if first // 5 == 0 else first - 5
+                second = second + 20 if second // 5 == 0 else second - 5
             else:
                 # rectangular pattern
-                first = first // 5 * 5 + second % 5 + 1
-                second = second // 5 * 5 + first % 5 + 1
+                new_first = first // 5 * 5 + second % 5
+                second = second // 5 * 5 + first % 5
+
+                first = new_first
 
             decrypted += Utils.idx_to_char_upper(self.key_matrix[first])
             decrypted += Utils.idx_to_char_upper(self.key_matrix[second])
