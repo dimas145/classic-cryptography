@@ -4,6 +4,9 @@ import re
 
 import algorithms
 
+full_vigenere = algorithms.FullVigenereCipher()
+full_vigenere.init_vigenere_square()
+
 STATIC_DIR = os.path.abspath("static")
 
 app = Flask(__name__, static_folder=STATIC_DIR)
@@ -39,7 +42,7 @@ def update():
         if (type == "1"):
             return algorithms.VigenereCipher().execute(command, text, key)
         elif (type == "2"):
-            return algorithms.FullVigenereCipher().execute(command, text, key)
+            return full_vigenere.execute(command, text, key)
         elif (type == "3"):
             return algorithms.AutoKeyVigenereCipher().execute(
                 command, text, key)
