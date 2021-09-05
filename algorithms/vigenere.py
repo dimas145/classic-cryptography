@@ -84,8 +84,6 @@ class FullVigenereCipher:
                 self.vigenere_square[i][j] = Utils.char_to_idx(
                     self.vigenere_square[i][j])
 
-        print(self.vigenere_square)
-
     def preprocessing(self, text, key):
         self.text = re.sub(r'[^a-zA-Z]', '', text).upper()
         self.key = re.sub(r'[^a-zA-Z]', '', key).lower()
@@ -97,8 +95,6 @@ class FullVigenereCipher:
         for i in range(len(self.text)):
             idx_text = Utils.char_to_idx(self.text[i])
             idx_key = Utils.char_to_idx(self.key[i % len(self.key)])
-            print(self.vigenere_square[idx_key])
-            print(self.vigenere_square[idx_key][idx_text])
             encrypted += Utils.idx_to_char_upper(
                 (self.vigenere_square[idx_key][idx_text]))
         return encrypted
