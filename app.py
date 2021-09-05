@@ -43,11 +43,15 @@ def update():
         elif (type == "3"):
             return algorithms.AutoKeyVigenereCipher().execute(
                 command, text, key)
+        elif (type == "4"):
+            return algorithms.ExtendedVigenereCipher().execute(
+                command, text, key)
         elif (type == "5"):
             return algorithms.PlayFairCipher().execute(command, text, key)
         elif (type == "6"):
             m = int(request.form["m_key"])
-            return algorithms.AffineCipher().execute(command, text, m, int(key))
+            return algorithms.AffineCipher().execute(command, text, m,
+                                                     int(key))
         else:
             return key + " " + command + " " + type + " " + alphabets
 

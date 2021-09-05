@@ -1,5 +1,6 @@
 from .vigenere import (
     VigenereCipher,
+    ExtendedVigenereCipher,
     FullVigenereCipher,
     AutoKeyVigenereCipher
 )

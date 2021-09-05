@@ -40,6 +40,34 @@ class VigenereCipher:
             return self.decrypt(text, key)
 
 
+class ExtendedVigenereCipher:
+    def __init__(self):
+        self.text = ""
+        self.key = ""
+
+    def encrypt(self, text, key):
+        self.text = text
+        self.key = key
+
+        return "".join(
+            chr((ord(self.text[i]) + ord(self.key[i % len(self.key)])) % 256)
+            for i in range(len(self.text)))
+
+    def decrypt(self, text, key):
+        self.text = text
+        self.key = key
+
+        return "".join(
+            chr((ord(self.text[i]) - ord(self.key[i % len(self.key)])) % 256)
+            for i in range(len(self.text)))
+
+    def execute(self, command, text, key):
+        if (command == "encrypt"):
+            return self.encrypt(text, key)
+        else:
+            return self.decrypt(text, key)
+
+
 class FullVigenereCipher:
     def __init__(self):
         self.text = ""
